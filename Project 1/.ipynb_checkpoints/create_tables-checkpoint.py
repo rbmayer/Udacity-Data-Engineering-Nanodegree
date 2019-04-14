@@ -3,7 +3,16 @@ from sql_queries import create_table_queries, drop_table_queries
 
 
 def create_database():
-    """Return cursor and connection to sparkify database."""
+    """Return cursor and connection to sparkify database.
+    
+    Drop (if exists) and create sparkify database on default student connection
+    to PostgreSQL engine.
+    
+    Returns:
+    cur: database cursor
+    conn: database connection
+    
+    """
     # connect to default database
     conn = psycopg2.connect("host=127.0.0.1 dbname=studentdb user=student password=student")
     conn.set_session(autocommit=True)

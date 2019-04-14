@@ -8,16 +8,16 @@ time_table_drop = "DROP TABLE IF EXISTS time"
 
 # CREATE TABLES
 
-songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays (songplay_id uuid PRIMARY KEY, start_time timestamp REFERENCES time(start_time), user_id int REFERENCES users(user_id), level text, song_id text REFERENCES songs(song_id), artist_id text REFERENCES artists(artist_id), session_id int, location text, user_agent text)""")
+songplay_table_create = ("""CREATE TABLE IF NOT EXISTS songplays (songplay_id uuid PRIMARY KEY, start_time timestamp NOT NULL REFERENCES time(start_time), user_id int NOT NULL REFERENCES users(user_id), level text, song_id text REFERENCES songs(song_id), artist_id text REFERENCES artists(artist_id), session_id int, location text, user_agent text)""")
 
-user_table_create = ("""CREATE TABLE IF NOT EXISTS users (user_id int PRIMARY KEY, first_name text, last_name text, gender text, level text, last_start_time timestamp)""")
+user_table_create = ("""CREATE TABLE IF NOT EXISTS users (user_id int PRIMARY KEY, first_name text, last_name text, gender text NOT NULL, level text NOT NULL, last_start_time timestamp NOT NULL)""")
 
-song_table_create = ("""CREATE TABLE IF NOT EXISTS songs (song_id text PRIMARY KEY, title text, artist_id text, year int, duration numeric)
+song_table_create = ("""CREATE TABLE IF NOT EXISTS songs (song_id text PRIMARY KEY, title text NOT NULL, artist_id text NOT NULL, year int NOT NULL, duration numeric)
 """)
 
-artist_table_create = ("""CREATE TABLE IF NOT EXISTS artists (artist_id text PRIMARY KEY, name text, location text, lattitude float8, longitude float8)""")
+artist_table_create = ("""CREATE TABLE IF NOT EXISTS artists (artist_id text PRIMARY KEY, name text NOT NULL, location text, lattitude float8, longitude float8)""")
 
-time_table_create = ("""CREATE TABLE IF NOT EXISTS time (start_time timestamp PRIMARY KEY, hour int, day int, week int, month int, year int, weekday int)""")
+time_table_create = ("""CREATE TABLE IF NOT EXISTS time (start_time timestamp PRIMARY KEY, hour int NOT NULL, day int NOT NULL, week int NOT NULL, month int NOT NULL, year int NOT NULL, weekday int NOT NULL)""")
 
 # INSERT RECORDS
 

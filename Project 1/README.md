@@ -1,7 +1,3 @@
-<<<<<<< 53eb97331fc5fefd0aa31438fe33951164a82f0d
-# udacity_data_engineering
-Data Engineering Projects
-=======
 # DEND Project 1: Data Modeling with Postgres
 
 ## Project Summary
@@ -12,6 +8,12 @@ As the data engineer assigned to the project, I have implemented an ETL pipeline
 
 Data Modeling with Postgres was submitted for Udacity's Data Engineering Nanodegree (DEND) in Spring 2019.
 
+## How to Use
+
+1. Run create_tables.py from terminal or python console to set up database and tables.
+2. Run etl.py from terminal or console to process and load data into database.
+3. Optional: Launch etl.ipynb using Jupyter Notebook to explore how process was developed. Launch test.ipynb to run validation and example queries.
+
 ## Database Schema
 
 The sparkify database design uses the simple star schema shown below. The schema contains one fact table, *songplays*, and four dimension tables: *songs*, *artists*, *users* and *time*. The fact table references the primary keys of each dimention table, enabling joins to songplays on song_id, artist_id, user_id and start_time, respectively. This structure will enable the analysts to aggregate the data efficiently and explore it using standard SQL queries. 
@@ -20,7 +22,9 @@ The sparkify database design uses the simple star schema shown below. The schema
 
 ###### Instructions for generating the schema diagram using [sqlalchemy_schemadisplay](https://github.com/fschulze/sqlalchemy_schemadisplay) were provided by Syed Mateen in the project-1-dend-v1 slack channel. Thanks Syed!
 
-Each songplay in the fact table is identified by a unique uuid generated from the song, user id and timestamp of the log entry. This field is set as a primary key, so that it is unique and non-null. A constraint on the UPSERT operation ensures that there are no duplicate songplays in the database. If the log contains multiple entries with the same song, user id and timestamp, only the first entry is imported. The process of generating unique uuid's could be applied to all of the primary identifiers of the dimension tables. This would improve join efficiency if the database were very large. 
+Each songplay in the fact table is identified by a unique uuid generated from the song, user id and timestamp of the log entry. This field is set as a primary key, so that it is unique and non-null. A constraint on the UPSERT operation ensures that there are no duplicate songplays in the database. If the log contains multiple entries with the same song, user id and timestamp, only the first entry is imported. The process of generating unique uuid's could be applied to all of the primary identifiers of the dimension tables. This would improve join efficiency if the database were very large.
+
+To keep subscription data as up-to-date as log data allows, the users table updates the subscription status of the user ("level") when processing the data to reflect membership status as of the most recent songplay timestamp.
 
 ## Data Processing and Quality Checks
 
@@ -49,4 +53,4 @@ The dataset contains 6,820 songplays from November 2018.
     COUNT(sp.songplay_id) as songplay_count, 
     100*COUNT(sp.songplay_id)/(select count(s.songplay_id) from songplays s) as percent 
   FROM songplays sp GROUP BY sp.level;
->>>>>>> first project submission
+
