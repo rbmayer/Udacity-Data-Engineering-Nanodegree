@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project created a drug information database with over **one billion rows** by combining drug label information, pricing and adverse events data for drugs registered in the National Drug Code (NDC) Directory of the United States. The database was designed for use as the back end of a medication research tool for consumers and professionals. The database's data model was optimized for deployment on a multi-node cluster from Amazon's Redshift database service. An ETL process scripted in python automatically downloads the data from each source into Amazon S3 buckets for staging; transforms and normalizes the data; and loads the data into the database.
+This project created a drug information database with over **one billion rows** by combining drug label information, pricing and adverse events data for drugs registered in the National Drug Code (NDC) directory of the United States. The database was designed for use as the back end of a medication research tool for consumers and professionals. The database's data model was optimized for deployment on a multi-node cluster from Amazon's Redshift database service. An ETL process scripted in python automatically downloads the data from each source into Amazon S3 buckets for staging; transforms and normalizes the data; and loads the data into the database.
 
 ![](images/table_rowcounts.png)
 
@@ -49,23 +49,23 @@ Quality checks were incorporated into the ETL process.
 ## Steps Taken in Project
 
 1. Selected drug data as project topic and confirmed availability of public data.
-* Developed use case.
-* Researched data formats, download options and API instructions.
-* Downloaded and explored sample data from each dataset .
-* Identified potential join fields among the three datasets.
+2. Developed use case.
+3. Researched data formats, download options and API instructions.
+4. Downloaded and explored sample data from each dataset .
+5. Identified potential join fields among the three datasets.
   * Located instructions to convert 10-digit NDC codes from labels and drug events to 11-digit NDC codes used in pricing data.
-* Developed and tested extraction processes.
+6. Developed and tested extraction processes.
   * Located a community AWS Lambda function to automatically unzip JSON archives (serverlessrepo-s3-uncompressor-UncompressFunction-1UT7EMTAJOBXH).
   * Created S3 buckets as staging locations for unzipped and transformed data.
-* Developed and tested transform processes.
+7. Developed and tested transform processes.
   * Utilized pandas to normalize nested JSON structure of adverse events data.
   * Configured an EC2 instance to run ETL since local machine was overloaded.
-* Downloaded data from openFDA S3 bucket over more than 3 days.
-* Finalized data model and created Redshift database.
-* Ran ETL script from EC2 instance to populate database.
+8. Downloaded data from openFDA S3 bucket over more than 3 days.
+9. Finalized data model and created Redshift database.
+10. Ran ETL script from EC2 instance to populate database.
   * Repeated steps 4-10 many times, and in multiple orders, until the data actually loaded.
   * Redesigned distribution and sortkey config until test queries loaded in reasonable timespans.
-* Ran test queries to verify database performance
+11. Ran test queries to verify database performance
 
 ## Other Scenarios
 
